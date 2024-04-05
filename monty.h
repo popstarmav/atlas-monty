@@ -32,7 +32,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /* Function prototype */
-void push(int value);
+void push(long long int value);
 void pall();
 
 #endif /* MONTY_H */
