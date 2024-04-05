@@ -32,8 +32,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /* Function prototype */
-void push_opcode(stack_t **stack, char *arg);
-void push(stack_t **stack, int value);
-void pall(stack_t **stack);
+void push(int value);
+void pall();
 
 #endif /* MONTY_H */
