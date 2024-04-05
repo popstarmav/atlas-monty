@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
             char *arg = strtok(NULL, " \n");
             if (arg == NULL) {
                 fprintf(stderr, "L%d: usage: push integer\n", line_number);
-                fclose(file); // Close the file before exiting
+                fclose(file);
                 exit(EXIT_FAILURE);
             }
 
@@ -37,12 +37,14 @@ int main(int argc, char *argv[]) {
             long int value = strtol(arg, &endptr, 10);
             if (*endptr != '\0') {
                 fprintf(stderr, "L%d: usage: push integer\n", line_number);
-                fclose(file); // Close the file before exiting
+                fclose(file);
                 exit(EXIT_FAILURE);
             }
             push((int)value);
         } else if (strcmp(opcode, "pall") == 0) {
             pall();
+        } else {
+            fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
         }
     }
 
