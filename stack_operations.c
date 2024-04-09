@@ -1,27 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include "monty.h"
 
-#define STACK_SIZE 100
-
-long long int stack[STACK_SIZE];
-int top = -1;
-
-void push(long long int value) {
-    if (top == STACK_SIZE - 1) {
-        fprintf(stderr, "Error: Stack overflow\n");
+void push(stack_t **stack, int value) {
+    stack_t *new_node = malloc(sizeof(stack_t));
+    if (new_node == NULL) {
+        fprintf(stderr, "Error: malloc failed\n");
         exit(EXIT_FAILURE);
     }
-    top++;
-    stack[top] = value;
+    new_node->n = value;
+    new_node->prev = NULL;
+
+    if (*stack == NULL) {
+        new_node->next = NULL;
+    } else {
+        new_node->next = *stack;
+        (*stack)->prev = new_node;
+    }
+    *stack = new_node;
 }
 
-void pall() {
-    if (top == -1) {
-        return;
-    }
-    for (int i = top; i >= 0; i--) {
-        printf("%lld\n", stack[i]);
+void pall(stack_t *stack) {
+    while (stack != NULL) {
+        printf("%d\n", stack->n);
+        stack = stack->next;
     }
 }
+
