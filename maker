@@ -1,0 +1,14 @@
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -pedantic
+TARGET = monty
+SRC = monty.c stack.c instructions.c error.c
+
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+    $(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+
+clean:
+    rm -f $(TARGET)
+
+re: clean all
